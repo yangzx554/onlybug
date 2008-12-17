@@ -49,7 +49,7 @@ class TicketsController < ApplicationController
         @version.ticket_id = @ticket.id
         @version.save!
         format.html do
-          Event.create({:project_id=>@ticket.project_id,:user_id =>@u.id,:type_id =>1,:content_id => @ticket.id,:operate_id=>2})
+          Event.create({:project_id=>@ticket.project_id,:user_id =>@u.id,:type_id =>1,:content_id => @ticket.id,:operate_id=>2,:status =>@ticket.state})
           flash[:notice] = "更新成功"
           redirect_to(project_ticket_path(@p,@ticket))
         end
@@ -70,7 +70,7 @@ class TicketsController < ApplicationController
     respond_to do|format|
       if @ticket.save
         format.html do
-          Event.create({:project_id=>@ticket.project_id,:user_id =>@u.id,:type_id =>1,:content_id => @ticket.id,:operate_id=>1})
+          Event.create({:project_id=>@ticket.project_id,:user_id =>@u.id,:type_id =>1,:content_id => @ticket.id,:operate_id=>1,:status =>@ticket.state})
           flash[:notice] = "新建任务成功"
           redirect_to(project_ticket_path(@p,@ticket))
         end

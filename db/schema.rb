@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080722062048) do
+ActiveRecord::Schema.define(:version => 20081217163732) do
 
   create_table "builds", :force => true do |t|
     t.binary   "project_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20080722062048) do
     t.integer  "type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "milestones", :force => true do |t|

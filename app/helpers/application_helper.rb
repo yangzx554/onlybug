@@ -111,7 +111,7 @@ module ApplicationHelper
       event_display <<  link_to(p.name,project_path(p))
       event_display << '/'
       event_display << '<span class="tstate" style="color: rgb(255, 17, 119);">'
-      event_display << state_name(ticket.state)
+      event_display << state_name(event.status)
       event_display << '</span>'
       event_display << '</p>'
       event_display << '<span class="etype eticket">ticket</span>'

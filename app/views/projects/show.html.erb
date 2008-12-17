@@ -23,9 +23,15 @@
     </div>
   </div>
   <div id="main-content" class="clear">
-    <div style="margin-top: 20px;" id="pbody">
-      <h3>欢迎来到 <%= @p.name %> </h3>
-    </div>
+      <div id="main-content" class="clear">
+        <div id="events">
+          <ul class="data events">
+            <% @events.each do|event| %>
+              <%= event_view(event) %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
   </div>
 </div>
 

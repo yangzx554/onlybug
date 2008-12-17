@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
   def show
     #   @p =Project.find(params[:id])
     @p = Project.get_cache(params[:id])
+    @events = Event.find_all_by_project_id(@p.id ,:order =>"created_at Desc")
   end
   def edit
     @p = Project.find(params[:id])
