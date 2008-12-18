@@ -1,0 +1,40 @@
+<div id = 'main'>
+  <%= render :partial=>'layouts/project' %>
+         
+  <div id="action-nav">
+    <ul class="clear">
+      <li><%= link_to("新建用例",new_project_testcase_path(@p))  %></li>
+    </ul>
+  </div>
+  <div id="flashes">
+    <%= display_standard_flashes %>
+  </div>
+  <div id="main-content" class="clear">
+      <h3>最近的日志分析</h3>
+      <table cellspacing="0" cellpadding="0" class="data issues">
+        <thead>
+          <tr>
+            <th style="width: 50px; text-align: center;" class="hfirst">版本</th>
+            <th>成功日志数</th>
+            <th>失败日志数</th>
+            <th>工程</th>
+            <th>状态</th>
+            <th class="hlast">时间</th>
+          </tr>
+        </thead>
+        <tbody id="open-tickets">
+          <% @builds.each do |build| %>
+            <tr id="ticket-<%= build.id %>" title="<%= build.version %>">
+              <th><%= build.version %></th>
+              <th><%= link_to  build.ture_logs.count,tlogs_path(@p,build) %></th>
+                <th><%= link_to  build.false_logs.count,flogs_path(@p,build) %></th>
+              <th><%= build.project.name %></th>
+              <th><%=  build_status build.status %>
+              <th><%= distance_of_time_in_words(build.created_at) %></th>
+            </tr>
+          <%end%>
+        </tbody>
+        <%= will_paginate @builds %>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+<% form_for @page ,:url => pages_path() do |f|%>
+  <dl>
+    <dt><label for="page_title">标题</label></dt>
+  
+    <dd>
+      <%= f.text_field(:title,:class=>"big")  %>
+    </dd>
+    <dt><label for="page_body">内容</label><br />
+    <dd>
+      <%= f.text_area(:content,:cols=>40,:rows=>20,:style=>"width: 100%") %>
+    </dd>
+  </dl>
+  <p class="btns">
+    <%= f.submit '保存', :class => 'button' %> 或者
+    <%= link_to '返回',root_path %>
+  </p>
+<%  end %>

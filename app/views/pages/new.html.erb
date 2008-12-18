@@ -1,0 +1,34 @@
+<div id="main"> 
+  <div id="action-nav">
+    <% if @p != nil %>
+    <ul class="clear">
+      <li>
+        <%= link_to "新建任务" ,new_project_ticket_path(@p)%>
+      </li>
+      <li>
+        <%= link_to "新建用例" ,new_project_testcase_path(@p)%>
+      </li>
+    </ul>
+    <%end%>
+  </div>
+  <div id="flashes">
+    <%=  display_standard_flashes %>
+  </div>
+  
+  <div id="page-top">
+    
+  </div>
+  <div id="main-content" class="clear">
+    <div class="group">
+      
+      <h3>创建新的页面</h3>
+      <% if @p == nil %>
+        <%= render :partial=>'page' %>
+      <%else%>
+        <%= render :partial=>'project_page' %>
+      <%  end %>
+    </div>
+    
+  </div>
+  
+</div>

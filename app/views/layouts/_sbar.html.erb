@@ -1,0 +1,29 @@
+<div id="sbar">
+  <div class="sblock">
+    <h3>项目类表<img class="tl" src="/images/app/tl.gif"/></h3>
+    <ul id="projects" class="stacked wbadges">
+      <%if @projects == nil%>
+        <h3>目前还没有什么项目</h3>
+      <% else %>
+        <% @projects.each do|project| %>
+          <li class="proj">
+            <%=  link_to project.name ,project_path(project) %>
+          </li>
+        <%end%>
+      <%end%>
+    </ul>
+  </div> 
+  <% if @p %>
+    <div class="sblock">
+      <h3>关于<%=  @p.name %>的页面</h3>
+      <ul id="pagelist" class="link-list sortable">
+        <% @p.pages.each do |page| %>
+          <li id="page_<%=  page.id %>">
+            <%= link_to(page.title,project_page_path(@p,page)) %>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+  <%end%>
+  
+</div>

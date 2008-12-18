@@ -1,0 +1,36 @@
+<div id = 'main'>
+  <%= render :partial=>'layouts/project' %>
+   
+  <div id="action-nav">
+    <ul class="clear">
+      <li><%= link_to("新建用例",new_project_testcase_path(@p))  %></li>
+    </ul>
+  </div>
+  <div id="flashes">
+    <%= display_standard_flashes %>
+  </div>
+  <div id="main-content" class="clear">
+    <div class="data-list">
+      <table cellspacing="0" cellpadding="0" class="data issues">
+        <thead>
+          <tr>
+            <th style="width: 25px; text-align: center;" class="hfirst">#</th>
+            <th>名字</th>
+            <th>创建者</th>
+            <th class="hlast">时间</th>
+          </tr>
+        </thead>
+        <tbody id="open-tickets">
+          <% @testcases.each do |testcase| %>
+            <tr id="ticket-<%= testcase.id %>" title="<%= testcase.name %>">
+              <td style="text-align: center;" class="tnum"><%=  link_to(testcase.id,project_testcase_path(@p,testcase))%></td>
+              <td class="issue st-open"><%=  link_to(testcase.name,project_testcase_path(@p,testcase))%></td>
+              <td><%= link_to(testcase.user.name,user_path(testcase.user)) %> </td>
+              <td class="date"><%=distance_of_time_in_words(testcase.updated_at)%></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

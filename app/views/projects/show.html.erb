@@ -1,0 +1,31 @@
+<div id="main">
+  <%= render :partial=>'layouts/project' %>
+  <div id="action-nav">
+    <ul id ="clear">
+      <% if @p.users.include?(@u) == true  %>
+      <%  else %>
+        <li>
+          <%=link_to "加入项目",join_path(@p,@u)%>
+        </li>
+      <%end%>
+      <%= render :partial=>'layouts/action' %>
+    </ul>
+  </div>
+  <div id="flashes">
+    <%=  display_standard_flashes %>
+  </div>
+  <div id="page-top">
+    <div style="display: none;" class="delete-dialog" id="delete-page">
+    </div>
+    <div class="greet clear">
+      <h3>首页</h3>
+      <p class="gmeta"> 最后一次更新是在 <%=distance_of_time_in_words(@p.updated_at) %></p>
+    </div>
+  </div>
+  <div id="main-content" class="clear">
+    <div style="margin-top: 20px;" id="pbody">
+      <h3>欢迎来到 <%= @p.name %> </h3>
+    </div>
+  </div>
+</div>
+

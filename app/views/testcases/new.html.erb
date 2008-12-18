@@ -1,0 +1,46 @@
+<div id="main"> 
+  <div id="project-nav">
+    <ul>
+      <li id="first">
+        <%=link_to("基本信息",project_path(@project))%>
+      </li>
+      <li class="selected">
+        <%=link_to("测试用例",project_testcases_path(@project))%>
+      </li>
+    </ul>
+  </div>
+  <div id="main-content" class="clear">
+    <% form_for(:testcase,:url=>project_testcases_path(@p)) do |f|%>
+      <div id="ticket-form" class="group" style="position: relative;">
+        <h3>
+          <span>测试用例基本信息</span>
+        </h3>
+        <div class="group-cnt clear">
+          <div class="group-main clear">
+            <dl>
+              <dt>
+                <label for="testcase_name">名字</label>
+              </dt>
+              <dd>
+                <%= f.text_field :name,:class =>"big",:style=>"width: 100%"%>
+              </dd>
+            </dl>
+            <dl>
+              <dt>
+                <label for="testcase_desc">描述</label>
+              </dt>
+              <dd>
+                <%= f.text_area :des,:style=>"width: 100%; height: 300px",:rows=>"20" %>
+              </dd>
+              
+            </dl>
+            <p class="btns">
+                <%= f.submit '保存', :class => 'button' %> 或者
+                <%= link_to '返回',project_testcases_path(@p) %>
+              </p>
+          </div>
+        </div>
+      </div>
+    <%end%>      
+  </div>
+</div>

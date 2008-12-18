@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>only bug</title>
+    <%= javascript_include_tag "prototype", "effects", "application", :cache => 'onlybug' %>
+    <%= stylesheet_link_tag 'core', :cache =>'onlybug' %>
+    <meta name="description" content="jj" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <ul id="sec-nav">
+          <% if logged_in? %>
+            <li><%= link_to "我的资料", signup_path %></li> 
+            <li><%= link_to "退出",logout_path %> </li> 
+          <% else %>
+            <li><%= link_to "注册", signup_path %></li> 
+            <li><%= link_to "登录",login_path %> </li> 
+          <%end%>
+        </ul>
+        <h1>
+          <a href="/">onlybug</a>
+        </h1>
+        <div id="nav" class="clear">
+          <ul>
+            <li id="dashboard">
+              <%= link_to("首页",root_path)%>
+            </li>
+            <li>
+              <%= link_to("会员",users_path)%>
+            </li>
+            <li id = "nticket">
+              <%= link_to("新增任务",new_project_ticket_path(@p))%>
+            </li>
+            <li>
+              <%= link_to("项目",projects_path)%>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id ="content"> 
+        <%= yield %> 
+        <%= render :partial=>'layouts/sbar' %>
+      </div>
+    </div>
+  </body>
+</html>

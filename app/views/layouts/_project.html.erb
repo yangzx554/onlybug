@@ -1,0 +1,53 @@
+<div id="project-nav">
+  <%  if @p == nil%>
+  <%else%>
+    <ul>
+      <% if params[:controller] == "projects" %>
+        <li id="t-proj" class="selected">
+      <%else%>
+        <li id="t-proj">
+        <%end%>
+        <%= link_to("导航",project_path(@p)) %>
+      </li>
+      <% if params[:controller] == "tickets" %>
+        <li id="t-menu" class="selected">
+      <%else%>
+        <li id="t-menu">
+        <%end%>
+        <%= link_to( "任务 <em>more </em>", project_tickets_path(@p))  %>
+        <ul style="display: none;" class="submenu wbadges">
+          <li><%=link_to("所有任务",project_tickets_path(@p))%></li>  
+        </ul>
+      </li>
+      <% if params[:controller] == "testcases" %>
+        <li id="t-menu" class="selected">
+      <%else%>
+        <li id="t-menu">
+      <%end%>
+      <li id ="t-menu">
+        <%= link_to("用例",project_testcases_path(@p)) %>
+      </li>
+      <% if params[:controller] == "users" %>
+        <li  class="selected">
+      <%else%>
+        <li>
+        <%end%>
+        <%= link_to("成员",project_users_path(@p)) %>
+      </li>
+      <% if params[:controller] == "pages" %>
+        <li  class="selected">
+      <%else%>
+        <li>
+        <%end%>
+        <%= link_to("页面",project_pages_path(@p)) %>
+      </li>
+       <% if params[:controller] == "builds" %>
+        <li  class="selected">
+      <%else%>
+        <li>
+        <%end%>
+        <%= link_to("日志",project_builds_path(@p)) %>
+      </li>
+    <%end%>
+  </ul>
+</div>

@@ -1,0 +1,36 @@
+# == Schema Information
+# Schema version: 20080620142850
+#
+# Table name: testcases
+#
+#  id         :integer(11)   not null, primary key
+#  des        :string(255)   
+#  name       :string(255)   
+#  created_at :datetime      
+#  updated_at :datetime      
+#  project_id :integer(11)   
+#  user_id    :integer(11)   
+#
+
+# == Schema Information
+# Schema version: 20080502120104
+#
+# Table name: testcases
+#
+#  id         :integer(11)   not null, primary key
+#  desc       :string(255)   
+#  name       :string(255)   
+#  created_at :datetime      
+#  updated_at :datetime      
+#  project_id :integer(11)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  desc: 
+  name: MyString
+
+two:
+  desc: 
+  name: MyString

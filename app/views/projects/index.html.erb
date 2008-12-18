@@ -1,0 +1,16 @@
+<div id="main">
+  <%= render :partial=>'layouts/project' %>
+  <div id="action-nav">
+    <%= render :partial=>'layouts/action' %>
+  </div>
+  <div id="flashes">
+    <%=  display_standard_flashes %>
+  </div>
+  <div id="main-content">
+    <% @projects.each do |project|%>
+      <li>  
+        <%= project.name %> 
+      </li>
+    <%end%>
+  </div>
+</div>

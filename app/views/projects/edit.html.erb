@@ -1,0 +1,32 @@
+<div id="main"> 
+  <div id="action-nav">
+    <ul class="clear">
+    </ul>
+  </div>
+  <div id="flashes">
+    <%=  display_standard_flashes %>
+  </div>
+  <div id="page-top">
+  </div>
+  <div id="main-content" class="clear">
+    <div class="group">
+      <h3>新建项目</h3>
+      <% form_for @p,:url=>project_path(@p) do|f|%>
+        <table class="form-tbl" cellspacing="0" cellpadding="0">
+          <tr>
+            <th><label for="project_name">项目名称</label></th>
+            <td><%= f.text_field :name ,:class=>"big"%> </td>
+          </tr>
+          <tr>
+            <th><label for="project_desc">项目说明</label></th>
+            <td><%= f.text_area :desc ,:class=>"big",:col => "55",:rows =>"10"%> </td>
+          </tr>
+        </table>
+        <p class="btns">
+          <%= f.submit '保存', :class => 'button' %> 或者
+          <a href="/projects">返回</a>
+        </p>
+      <%end%>
+    </div>
+  </div>
+</div>

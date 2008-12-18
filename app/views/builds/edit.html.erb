@@ -1,0 +1,12 @@
+<h1>Editing build</h1>
+
+<% form_for(@build) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @build %> |
+<%= link_to 'Back', builds_path %>

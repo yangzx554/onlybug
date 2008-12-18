@@ -1,0 +1,41 @@
+<div id = 'main'>
+  <%= render :partial=>'layouts/project' %>
+   
+  <div id="action-nav">
+    <ul class="clear">
+      <li><%= link_to("新建任务",new_project_ticket_path(@p))  %></li>
+    </ul>
+  </div>
+  <div id="flashes">
+    <%= display_standard_flashes %>
+  </div>
+  <div id="main-content" class="clear">
+    <div class="sentence round"> Found 1 result for tickets created today, sorted by date. </div>
+    <div class="data-list">
+      <table cellspacing="0" cellpadding="0" class="data issues">
+        <thead>
+          <tr>
+            <th style="width: 25px; text-align: center;" class="hfirst">#</th>
+            <th>状态</th>
+            <th>任务</th>
+            <th>接受者</th>
+            <th>里程碑</th>
+            <th class="hlast">时间</th>
+          </tr>
+        </thead>
+        <tbody id="open-tickets">
+          <% @tickets .each do |ticket| %>
+            <tr id="ticket-<%= ticket.id %>" title="<%= ticket.title %>">
+              <td style="text-align: center;" class="tnum"><%=  link_to(ticket.id,project_ticket_path(@p,ticket))%></td>
+              <td class="ttstate"><span style="color: rgb(170, 170, 170);" class="tstate"><%= state_name(ticket.state) %></span></td>
+              <td class="issue st-open"><%=  link_to(ticket.title,project_ticket_path(@p,ticket))%></td>
+              <td><%= link_to(ticket.assigned_user.name,user_path(ticket.assigned_user)) %> </td>
+              <td><a href="/projects/9767/milestones/9358-di">di </a></td>
+              <td class="date"><%=distance_of_time_in_words(@p.updated_at)%></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div id="main">
+  <%= render :partial=>'layouts/project' %>
+  <div id="action-nav">
+    <%= render :partial=>'layouts/action' %>
+  </div>
+  <div id="flashes">
+    <%=  display_standard_flashes %>
+  </div>
+  <div id="page-top">
+    <div class="greet clear">
+      <div class="ticket-meta clear">
+        <span class="ticketnum clear">
+          <%= link_to(params[:id], project_ticket_path(@p,@testcase))%>
+        </span>
+      </div>
+      <div class="gleft">
+        <%= image_tag(@photo.public_filename(:tiny),:class =>"avatar") %>
+      </div>
+      <div class="gcnt">
+        <h2>
+          <%= @testcase.name %> 
+        </h2>
+        <p class="date">
+          创建为 <%= @user.name %> |
+          <%= distance_of_time_in_words(@testcase.created_at) %>
+        </p>
+        <div class="greet-cnt">
+          <div>
+            <p>
+              <%=@testcase.des %>
+            </p>
+          </div>
+          <div id="main-content" class="clear">
+            <h3> 关于这个testcase的日志</h3>
+            <table cellspacing="0" cellpadding="0" class="data issues">
+              <thead>
+                <tr>
+                  <th style="width: 25px; text-align: center;" class="hfirst">#</th>
+                  <th>名字</th>
+                  <th>操作</th>
+                  <th>状态</th>
+                  <th class="hlast">时间</th>
+                </tr>
+              </thead>
+              <tbody id="open-tickets">
+                <% @slogs.each do |log| %>
+                  <tr id="ticket-<%= log.id %>" title="<%= log.name %>">
+                    <th><%= log.id %></th>
+                    <th><%=link_to log.name ,project_build_seleniumlog_path(log.project_id,log.build_id,log) %></th>
+                    <th><%= log.operate %></th>
+                    <th><%= selenium_log(log.status) %></th>
+                    <th><%= distance_of_time_in_words(log.created_at) %></th>
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+            <%= will_paginate @slogs %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

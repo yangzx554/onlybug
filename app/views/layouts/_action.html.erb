@@ -1,0 +1,20 @@
+<ul class ="clear">
+  <%if @p == nil%>
+    <li>
+      <%= link_to "新建项目", new_project_path() %>
+    </li>
+    <li>
+      <%= link_to "新建页面", new_page_path() %>
+    </li>
+  <%else%> 
+    <li>
+      <%=  link_to "修改项目",edit_project_path(@p)%>
+    </li>
+    <li>
+      <%=  link_to "新建任务",new_project_ticket_path(@p) %>
+    </li>
+    <li>
+      <%=  link_to "新建页面",new_project_page_path(@p)  %>
+    </li>
+  <%end%>
+</ul>

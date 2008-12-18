@@ -1,0 +1,20 @@
+<div id= 'main'>
+  
+  <div id="action-nav">
+    <ul id ="clear">
+      <h3>会员列表</h3>
+    </ul>
+  </div>
+  <div id="main-content" class="clear">
+    <ul id="members-list" class="media-list">
+      <% @users.each do|user| %>
+        <li class="clear media-item">
+          <%= link_to(image_tag(user.photo.public_filename(:tiny),:class =>"avatar"),user_path(user)) %>
+          <h4><%=  user.name %></h4>
+          <h4><%=  user.email %></h4>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>
+

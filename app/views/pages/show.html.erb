@@ -1,0 +1,36 @@
+<div id = 'main'>
+  <%= render :partial=>'layouts/project' %>
+  <div id="action-nav">
+    <% if @p != nil  %>
+    <ul class="clear"> 
+      <li>
+        <%= link_to("新建测试用例",new_project_testcase_path(@p)) %>
+      </li>
+      <li>
+        <%= link_to("新建任务",new_project_ticket_path(@p))  %>
+      </li>
+      <li>
+        <%= link_to("新建页面",new_project_page_path(@p)) %>
+      </li>
+    </ul>
+    <%else%>
+      <ul>
+         <li>
+        <%= link_to("新建项目",new_project_path) %>
+      </li>
+       <li>
+        <%= link_to("新建页面",new_page_path) %>
+      </li>
+      </ul>
+    <%end%>
+  </div>
+  <div id="flashes">
+    <%= display_standard_flashes %>
+  </div>
+  <div id="main-content" class="clear">
+    <div style="margin-top: 20px;" id="pbody">
+      <h3><%= @page.title %></h3>
+      <%= h @page.content %>
+    </div>
+  </div>
+</div>

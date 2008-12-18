@@ -1,0 +1,27 @@
+<div id="main">
+  <div id="project-nav">
+    <ul> 
+    </ul>
+  </div>
+  <div id="action-nav">
+     <%= render :partial=>'layouts/action' %>
+  </div>
+    <div id="flashes">
+    <%=  display_standard_flashes %>
+  </div>
+  <div id="page-top">
+    <div class="greet clear">
+      <h3><%= @u.email %> </h3>
+    </div>
+  </div>
+  <div id = "main-content" >
+    <div id="events">
+      <ul class="data events">
+    <% @events.each do |event| %>
+      <%= event_view(event) %>
+    <%end%>
+      </ul>
+    </div>
+  </div>
+</div>
+

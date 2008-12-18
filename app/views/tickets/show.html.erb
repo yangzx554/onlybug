@@ -1,0 +1,161 @@
+<div id = 'main'>
+  <%= render :partial=>'layouts/project' %>
+  <div id="action-nav">
+    <%= render :partial=>'layouts/action' %>
+  </div>
+  <div id="flashes">
+    <%= display_standard_flashes %>
+  </div>
+  <div id="page-top">
+    <div class="greet clear">
+      <div class="ticket-meta clear">
+        <span class="ticketnum clear">
+          <%= link_to(params[:id], project_ticket_path(@p,@ticket))%>
+        </span>
+        <span style="color: rgb(170, 170, 170);" class="tstate">
+          <%= state_name(@ticket.state) %>
+        </span>
+      </div>
+      <div class="gleft">
+        <%= image_tag(@ticket.user.photo.public_filename(:tiny),:class =>"avatar") %>
+      </div>
+      <div class="gcnt">
+        <h2>
+          <%= @ticket.title %>
+        </h2>
+        <p class="date">
+          创建为 <%= @ticket.user.name %> |
+          <%= distance_of_time_in_words(@ticket.created_at) %>
+        </p>
+        <div class="greet-cnt">
+          <div>
+            <p>
+              <%=@ticket.desc %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="main-content" class="clear">
+      <div id="ticket">
+        <% unless @ticket.versions == nil %>
+          <div class="changes">
+            <h3>关于这个任务的相关回应</h3>
+          
+            <ul class="info">
+              <% @ticket.versions.each do |version| %>
+                <li class="tticket clear shaded" id="ticket-1-2">
+                <div class="tleft">
+                  <%= image_tag(version.user.photo.public_filename(:tiny),:class =>"avatar")%>
+                </div>
+                <div class="tcnt">
+                  <h4><%= link_to(version.user.name,user_path(version.user)) %>
+                  <span class="event-date"><%= distance_of_time_in_words(version.created_at)%></span></h4>
+                  <% unless version.start_state == version.end_state %>
+                    <ul class="ticket-changes">
+                      <li>→ 状态改变从 <em class="change">"<%=  state_name( version.start_state)%>"</em> 到 <em class="change">“<%= state_name( version.end_state)%>”</em></li>
+                    </ul>
+                  <%end%>
+                  <div style="clear: left;" class="desc">
+                    <div>
+                      <p> 
+                        <%= version.message %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% unless @u == version.user  %>
+                  <li> <%= link_to("修改",edit_project_ticket_version_path(@p,@ticket,version),:class=>"edit") %></li>
+                <%end%>
+              <%end%>
+            </ul>
+          </div>
+        <%end%>新建
+        <% form_for(@ticket, :url=>project_ticket_path(@p,@ticket)) do |f|%>
+          <div id="ticket-form" style="position: relative;" class="group">
+            <h3>
+              更新这个任务
+            </h3>
+            <div class="group-cnt clear">
+            
+              <div class="group-main clear">
+                <dl>
+                  <dt><label for="ticket_name">修改标题</label></dt>
+                  <dd> <%= f.text_field :title ,:class =>"big",:style=>"width: 100%;"%></dd>
+                  <dt>新建
+                    <label for="ticket_body">
+                      增加一个回应
+                    </label>
+                  </dt>
+                  <dd>
+                  <textarea tabindex="4" style="width: 100%;" rows="15" name="ticket[body]" id="ticket-body" cols="40"></textarea></dd>      
+                </dl>
+              </div>
+              <div class="group-more">
+                <%= f.hidden_field :assigned_id %>
+                <ul style="position: relative;" class="list-form">
+                  <li id="select">
+                    <label>谁的任务？</label>
+                    <div tabindex="5" class="trigger" id="assigned-user">
+                      <%= image_tag(@ticket.assigned_user.photo.public_filename(:tiny),:class =>"avatar") %>
+                      <span title="" class="uname"><%=@ticket.assigned_user.name %></span>
+                    </div>
+                    <div style="display: none;" id="optgroup">
+                      <ul class="custom-select clear" id="options">
+                        <% @p.users.each do |user| %>
+                          <li id="user-<%= user.id%>">
+                            <%= image_tag(user.photo.public_filename(:tiny),:class =>"avatar") %>
+                            <span title="" class="uname"><%= user.name %></span>
+                          </li>
+                        <%  end %>
+                        <li id="user-0">
+                          <img class="avatar" alt="Assign to no one" src="/images/app/noavatar.gif"/>
+                          <span class="uname">没有指定人员</span>
+                        </li>
+                      </ul>
+                    </div> 
+                  </li>
+                  <li>
+                    <label for="ticket_state">任务状态</label>
+                    <%= f.select(:state ,state_select) %>
+                  </li>
+                  <li>
+                    <label for="ticket_tags">标签</label>
+                  
+                    <%= f.text_field(:tag ,:class =>"big",:style=>"width: 100%;") %>
+                    <ul id="prevtags">
+                      <% @tags.each do |tag| %>
+                        <li><%= link_to(tag.name,"#",:class=>"",:title =>tag.name) %></li>
+                      <%end%>
+                    </ul>
+                  </li>
+                </ul>
+              </div>    
+            </div>  
+          </div>
+          <p class="btns">
+            <%= submit_tag  "更新" %>
+            or 
+            <%= link_to("返回",project_tickets_path(@p)) %>
+          </p>
+          <script charset="utf-8" type="text/javascript">
+              new TagList('ticket_tag', 'prevtags');
+              document.observe('dom:loaded', function() {
+                  new DropMenu('select', function(options) {
+                      options.each(function(option) {
+                          option.observe('click', function(event) {
+                              var element = Event.findElement(event, 'li');
+                              this.trigger.update(element.innerHTML);
+                              this.focused = false;
+                              this.fadeMenu();
+                              $('ticket_assigned_id').value = element.id.sub(/user-/, '');
+                          }.bindAsEventListener(this));
+                      }.bind(this));
+                  });
+              });
+          </script>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

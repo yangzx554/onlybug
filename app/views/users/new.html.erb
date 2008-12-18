@@ -1,0 +1,55 @@
+<div id="main">
+  <div id="main-content">
+    
+    <% form_for :user,:url=>users_path(), :html => {:multipart => true,:id => "pu-form1" }do |f|%>
+      <%  %>
+      <table class="form-tbl" cellspacing="0" cellpadding="0">
+        <tbody>
+          <th>
+            <label for="user_name">* 名字</label>
+          </th>
+          <td>
+            <p class="hint">在本站显示的名字</p>
+            <%= f.text_field :name,:size=>"30"%>
+          </td>
+          <tr>
+            <th><label for="user_email">* 邮箱地址</label></th>
+            <td><p class="hint">用来登录的邮箱地址</p>
+              <%= f.text_field:email,:size =>"30" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="user-password">* 你的密码</label>
+            </th>
+            <td>
+              <p class="hint"></p>
+              <%= f.password_field :password,:size =>"30" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="user-password">* 确认你的密码</label>
+            </th>
+            <td>
+              <p class="hint"></p>
+              <%= f.password_field :password_confirmation,:size =>"30" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="avatar">你的头像</label>
+            </th>
+            <td>
+              <p class="hint"> 个人头像 40x40.</p>
+              <input id="user_uploaded_data" type="file" size="30" name="photo[uploaded_data]"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="btns">
+        <%= f.submit '保存', :class => 'button' %>
+      </p
+    <%end%>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div id = 'main'>
+  <%= render :partial=>'layouts/project' %>
+         
+  <div id="action-nav">
+    <ul class="clear">
+      <li><%= link_to("新建用例",new_project_testcase_path(@p))  %></li>
+    </ul>
+  </div>
+  <div id="flashes">
+    <%= display_standard_flashes %>
+  </div>
+  <div id="main-content" class="clear">
+    <div class="data-list">
+      <% if @f_slogs == nil %>
+      <%  else %>
+      <h3>失败日志</h3>
+      <table cellspacing="0" cellpadding="0" class="data issues">
+        <thead>
+          <tr>
+            <th style="width: 25px; text-align: center;" class="hfirst">#</th>
+            <th>名字</th>
+            <th>操作</th>
+            <th>状态</th>
+            <th class="hlast">时间</th>
+          </tr>
+        </thead>
+        <tbody id="open-tickets">
+          <% @f_slogs.each do |log| %>
+            <tr id="ticket-<%= log.id %>" title="<%= log.name %>">
+              <th><%= log.id %></th>
+              <th><%= log.name %></th>
+              <th><%= log.operate %></th>
+              <th><%= selenium_log(log.status) %></th>
+              <th><%= distance_of_time_in_words(log.created_at) %></th>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+      <%end%>
+      <%= will_paginate @f_slogs %>
+      <h3>成功日志</h3>
+      <table cellspacing="0" cellpadding="0" class="data issues">
+        <thead>
+          <tr>
+            <th style="width: 25px; text-align: center;" class="hfirst">#</th>
+            <th>名字</th>
+            <th>操作</th>
+            <th>状态</th>
+            <th class="hlast">时间</th>
+          </tr>
+        </thead>
+        <tbody id="open-tickets">
+          <% @t_slogs.each do |log| %>
+            <tr id="ticket-<%= log.id %>" title="<%= log.name %>">
+              <th><%= log.id %></th>
+              <th><%= log.name %></th>
+              <th><%= log.operate %></th>
+              <th><%= selenium_log(log.status) %></th>
+              <th><%= distance_of_time_in_words(log.created_at) %></th>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+      <%= will_paginate @t_slogs %>
+    </div>
+  </div>
+</div>

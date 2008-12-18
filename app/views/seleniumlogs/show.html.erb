@@ -1,0 +1,50 @@
+<div id = 'main'>
+  <%= render :partial=>'layouts/project' %>
+  <div id="action-nav">
+    <%= render :partial=>'layouts/action' %>
+  </div>
+  <div id="flashes">
+    <%= display_standard_flashes %>
+  </div>
+  <div id="page-top">
+    <div class="greet clear">
+      <div class="ticket-meta clear">
+        <span class="ticketnum clear">
+          <%= link_to(params[:id], project_build_seleniumlog_path(@p,@build,@seleniumlog))%>
+        </span>
+        <span style="color: rgb(170, 170, 170);" class="tstate">
+          <%=  seleniumlog_state_name @seleniumlog.status %>
+        </span>
+      </div>
+      <div class="gcnt">
+        <h2>
+          <%= @seleniumlog.name%>
+        </h2>
+        <p>
+          <%= @seleniumlog.operate %>
+        </p>
+        <p class="date">
+          时间为：
+          <%= distance_of_time_in_words(@seleniumlog.created_at) %>|执行的版本为  
+          <%= link_to  @build.version, project_build_path(@p,@build)%>
+        </p>
+        <div class="greet-cnt">
+          <div>
+            <p>
+              Testcase的名字：
+              <%= link_to  @seleniumlog.testcase.name,project_testcase_path(@p,@seleniumlog.testcase) %>
+            </p>
+            <p>
+              预期值:
+              <%= @seleniumlog.expected %>
+            </p>
+            <p>
+              实际值:
+              <%= @seleniumlog.actual %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
