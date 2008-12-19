@@ -1987,3 +1987,11 @@ ActionView::TemplateError (Couldn't find Project without an ID) on line #21 of a
     /usr/local/bin/mongrel_rails:19
 
 Rendering /web/tool/onlybug/public/500.html (500 Internal Server Error)
+
+
+Processing BuildsController#tlogs (for 10.0.20.32 at 2008-12-18 20:10:20) [GET]
+  Session ID: c83979719cfc3825d6ca7675ce28b32d
+  Parameters: {"project_id"=>"1", "id"=>"1", "page"=>"10"}
+Rendering template within layouts/application
+Rendering builds/tlogs
+Completed in 27ms (View: 12, DB: 4) | 200 OK [http://10.0.22.72/projects/1/builds/1/tlogs?page=10]
