@@ -1,3 +1,4 @@
+# coding: utf-8  
 class UsersController < ApplicationController
   skip_filter :login_required, :only => [:login,:new,:create]
   def join
@@ -36,14 +37,14 @@ class UsersController < ApplicationController
   end
   
   def create
-    @photo = Photo.new(params[:photo])
-    @photo.save! 
+  #  @photo = Photo.new(params[:photo])
+   # @photo.save!
     u = User.new
     u.name = params[:user][:name]
     u.password = params[:user][:password]
     u.password_confirmation = params[:user][:password_confirmation]
     u.email = params[:user][:email]
-    u.photo_id =@photo.id
+   # u.photo_id =@photo.id
     respond_to do |format|
       if u.save
         flash[:notice] = '注册成功'

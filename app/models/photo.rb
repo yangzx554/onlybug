@@ -37,7 +37,6 @@
 #
 
 class Photo < ActiveRecord::Base
-  acts_as_cached
   has_one :user
   has_attachment  :content_type => :image, 
     :storage => :file_systems, 

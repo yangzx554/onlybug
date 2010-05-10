@@ -1,3 +1,4 @@
+# coding: utf-8
 # == Schema Information
 # Schema version: 20080620142850
 #
@@ -26,8 +27,6 @@
 
 class Project < ActiveRecord::Base
   has_many :seleniumlogs
-  acts_as_cached
-  after_save :expire_cache
   has_many :testcases
   has_many :pages
   has_many :tickets

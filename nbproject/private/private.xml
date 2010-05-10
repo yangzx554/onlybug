@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/yang/work/onlybug/app/controllers/application_controller.rb</file>
+        <file>file:/home/yang/work/onlybug/app/controllers/users_controller.rb</file>
+        <file>file:/home/yang/work/onlybug/app/helpers/application_helper.rb</file>
+        <file>file:/home/yang/work/onlybug/app/helpers/builds_helper.rb</file>
+        <file>file:/home/yang/work/onlybug/app/helpers/events_helper.rb</file>
+        <file>file:/home/yang/work/onlybug/app/views/layouts/application.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/helpers/users_helper.rb</file>
+        <file>file:/home/yang/work/onlybug/app/views/welcome/show.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/views/layouts/_action.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/views/layouts/_flash.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/views/pages/_page.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/views/layouts/_project.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/views/pages/_project_page.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/views/users/join.html.erb</file>
+        <file>file:/home/yang/work/onlybug/app/views/users/login.html.erb</file>
+        <file>file:/home/yang/work/onlybug/lib/lib_requires.rb</file>
+        <file>file:/home/yang/work/onlybug/config/routes.rb</file>
+        <file>file:/home/yang/work/onlybug/app/views/welcome/index.html.erb</file>
+    </open-files>
 </project-private>

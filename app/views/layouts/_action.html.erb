@@ -1,10 +1,11 @@
+<%  # coding: utf-8  %>
 <ul class ="clear">
   <%if @p == nil%>
     <li>
-      <%= link_to "新建项目", new_project_path() %>
+      <%= link_to "new project", new_project_path() %>
     </li>
     <li>
-      <%= link_to "新建页面", new_page_path() %>
+      <%= link_to "new page", new_page_path() %>
     </li>
   <%else%> 
     <li>

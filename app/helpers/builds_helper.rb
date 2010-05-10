@@ -1,3 +1,4 @@
+# coding: utf-8
 module BuildsHelper
   def build_status(status)
     case  status 

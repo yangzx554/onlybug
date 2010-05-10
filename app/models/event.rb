@@ -14,7 +14,6 @@
 #
 
 class Event < ActiveRecord::Base
-  acts_as_cached
   after_save :expire_cache
   belongs_to :user
 end

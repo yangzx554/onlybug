@@ -1,3 +1,4 @@
+# coding: utf-8
 module SeleniumlogsHelper
   def seleniumlog_state_name(status)
     case status

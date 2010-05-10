@@ -1,4 +1,4 @@
-# Methods added to this helper will be available to all templates in the application.
+# coding: utf-8
 module ApplicationHelper
   def error_messages_on(object, method, options = {})
     html = {}
@@ -30,22 +30,22 @@ module ApplicationHelper
   end
   
   def display_standard_flashes(message = '这里有些问题需要你的注意')
-    if flash[:notice]
-      flash_to_display, level = flash[:notice], 'notice'
-    elsif flash[:warning]
-      flash_to_display, level = flash[:warning], 'warning'
-    elsif flash[:error]
-      level = 'error'
-      if flash[:error].instance_of?( ActiveRecord::Errors) || flash[:error].is_a?( Hash)
-        flash_to_display = message
-        flash_to_display << activerecord_error_list(flash[:error])
-      else
-        flash_to_display = flash[:error]
-      end
-    else
-      return
-    end
-    content_tag 'div', flash_to_display, :id => "flash-#{level}"
+#    if flash[:notice]
+#      flash_to_display, level = flash[:notice], 'notice'
+#    elsif flash[:warning]
+#      flash_to_display, level = flash[:warning], 'warning'
+#    elsif flash[:error]
+#      level = 'error'
+#      if flash[:error].instance_of?( ActiveRecord::Errors) || flash[:error].is_a?( Hash)
+#        flash_to_display = message
+#        flash_to_display << activerecord_error_list(flash[:error])
+#      else
+#        flash_to_display = flash[:error]
+#      end
+#    else
+#      return
+#    end
+#    content_tag 'div', flash_to_display, :id => "flash-#{level}"
   end
 
   def activerecord_error_list(errors)
